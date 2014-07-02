@@ -43,7 +43,7 @@
     {
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "centos6.box",
+    "output": "centos6.box"
     }
   ],
   "provisioners": [
