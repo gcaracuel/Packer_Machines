@@ -74,9 +74,9 @@
 ---
 
 
-### Note: Username: vagrant  Password: vagrant
+###### Note: Username: vagrant  Password: vagrant
 
-### Note2: Modify Autounattend.xml to configure Windows updates before you create your box.
+###### Note2: Modify Autounattend.xml to configure Windows updates before you create your box.
   
 
 
