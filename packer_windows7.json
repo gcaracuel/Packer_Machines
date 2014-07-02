@@ -91,7 +91,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "windows_7.box"
+      "output": "./vagrant/windows7/windows_7.box"
     }
   ]
 }

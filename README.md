@@ -22,7 +22,7 @@
   
   You could modify bash script in 'scripts' folder to install/configure your template Vagrant box.
   
-  When Packer job finish you could find a "{system OS}.box", now you got move to vagrant/{desired OS} and execute:
+  When Packer job finish you could find a "{system OS}.box" inside the vagrant/{desired OS} folder so move there a get it up! Feel free of copy this folder where you are more confortable.
   
   Then just ```vagrant up```  it and you could connect trough SSH: ```ssh vagrant@localhost:2222``` / ```vagrant ssh``` for Linux guests or ```vagrant rdp``` for Windows guests
   
@@ -58,7 +58,7 @@
   
   You could tune bash script in 'scripts' folder to install/configure your template Vagrant box.
    
-  When Packer job finish you could find a "{system OS}.box", now you got move to vagrant/{desired OS} and execute:
+  When Packer job finish you could find a "{system OS}.box" inside the vagrant/{desired OS} folder so move there a get it up! Feel free of copy this folder where you are more confortable.
   
   Then just ```vagrant up```  it and you could connect trough SSH: ```ssh vagrant@localhost:2222``` / ```vagrant ssh``` for Linux guests or ```vagrant rdp``` for Windows guests
   
