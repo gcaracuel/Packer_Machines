@@ -1,0 +1,22 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "vagrant_CentOS6"
+    config.vm.box_url = "file://\.\./\.\./centos6.box"
+
+    config.ssh.forward_agent = "true"
+    config.vm.network :private_network, type: "dhcp", auto_config: false
+
+    # Forward X11
+    config.ssh.forward_x11 = true
+    
+    ## Using NFS as it has much better performance
+    ## On linux install nfs-kernel-server, MacOS works by default
+    ## Will ask for root password to set some things up
+    config.vm.synced_folder ".", "/vagrant", :nfs => true
+
+    config.vm.provider :virtualbox do |vb|
+        vb.gui = false
+        vb.customize ["modifyvm", :id, "--memory", 1024]
+        vb.customize ["modifyvm", :id, "--cpus", 2]
+        vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+end
