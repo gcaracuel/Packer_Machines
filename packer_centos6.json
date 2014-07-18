@@ -8,7 +8,7 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "RedHat_64",
       "headless": true,
-      "http_directory": "./unnatended/centos6",
+      "http_directory": "./bootstrap/centos6",
       "http_port_min": "8970",
       "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
       "iso_checksum_type": "md5",
