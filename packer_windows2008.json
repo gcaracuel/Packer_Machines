@@ -41,7 +41,7 @@
       ],
       "iso_checksum_type": "md5",
       "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
-      "headless": false,
+      "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
