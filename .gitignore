@@ -6,3 +6,6 @@ vagrant/*/*.box
 
 # For vagrant files
 vagrant/*/.vagrant/
+
+# ISO images
+iso/
