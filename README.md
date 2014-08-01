@@ -78,7 +78,7 @@
 
 ###### Note2: Modify Autounattend.xml to configure Windows updates before you create your box.
 
-###### Note3: Vagrantfile are configured for Virtualbox voxes, change it to desired
+###### Note3: Vagrantfile are configured for Virtualbox Boxes, change it to desired
   
 
 
