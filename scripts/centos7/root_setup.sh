@@ -16,6 +16,7 @@ sudo rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm;
 sudo yum --enablerepo epel install -y dkms
 
+sudo yum install -y vim
 
 
 # Installing vagrant keys

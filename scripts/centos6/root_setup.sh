@@ -12,6 +12,8 @@ wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.
 sudo rpm -i rpmforge-release-0.5.3-1.el6.rf.*.rpm
 sudo yum --enablerepo rpmforge install -y dkms
 
+sudo yum install -y vim
+
 
 # Installing vagrant keys
 mkdir /home/vagrant/.ssh
