@@ -4,7 +4,8 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = "file://centos6.box"
     config.vm.hostname = "centos6.localdomain"
 
-    config.ssh.forward_agent = "true"
+    # We need to forward SSH manually because it will bind to 0.0.0. this way
+    config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh"
     config.vm.network :private_network, type: "dhcp", auto_config: false
 
     # Forward X11

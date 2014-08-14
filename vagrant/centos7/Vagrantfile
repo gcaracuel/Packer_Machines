@@ -4,7 +4,8 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = "file://centos7.box"
     config.vm.hostname = "centos7.localdomain"
 
-    config.ssh.forward_agent = "true"
+    # We need to forward SSH manually because it will bind to 0.0.0. this way
+    config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh"
     config.vm.network :private_network, type: "dhcp", auto_config: false
 
     # Forward X11
@@ -19,7 +20,7 @@ Vagrant.configure("2") do |config|
 
 
     ## Use this line to forward ports, remember to open local firewall and reload vagrant
-    #config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
+    config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
     #config.vm.network :forwarded_port, guest: 80, host: 580, id: "apache", auto_correct: true
 
 
