@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
 
     ## Use this line to forward ports, remember to open local firewall and reload vagrant
-    config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
+    #config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
     #config.vm.network :forwarded_port, guest: 80, host: 580, id: "apache", auto_correct: true
 
 
