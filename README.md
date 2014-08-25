@@ -16,7 +16,7 @@
 
   Let's make Packer to work! Move to folder you downloaded this project and start
 
-    ```packer build -force packer_{system OS}.json``` or use ```packer build --only=virtualbox-iso  packer_{system OS}.json```
+    ```packer build -force packer_{system OS}.json``` or use ```packer build --force --only=virtualbox-iso  packer_{system OS}.json```
     
   Packer will start to build a MV and then will export it to convert it to a Vagrant box, take seat....
   
@@ -52,7 +52,7 @@
 
   Let's make Packer to work! Move to folder you downloaded this project and start
 
-    ```packer.exe build -force packer_{system OS}.json``` or use ```packer.exe build --only=virtualbox-iso  packer_{system OS}.json```
+    ```packer.exe build -force packer_{system OS}.json``` or use ```packer.exe build --force --only=virtualbox-iso  packer_{system OS}.json```
     
   Packer will start to build a MV and then will export it to convert it to a Vagrant box, take seat....
   
