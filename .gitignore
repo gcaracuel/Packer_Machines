@@ -9,3 +9,7 @@ vagrant/*/.vagrant/
 
 # ISO images
 iso/
+
+# Packer temp files
+output-vritualbox-iso
+output-vmware-iso
