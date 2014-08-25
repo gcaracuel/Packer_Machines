@@ -43,7 +43,7 @@
     {
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "./vagrant/centos7/centos7.box"
+    "output": "./packer-output/centos7.box"
     }
   ],
   "provisioners": [

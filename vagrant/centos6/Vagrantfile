@@ -1,12 +1,15 @@
 Vagrant.configure("2") do |config|
     config.vm.define "vagrant"
     config.vm.box = "vagrant_centos6"
-    config.vm.box_url = "file://centos6.box"
+    config.vm.box_url = "file://../../packer-output/centos6.box"
     config.vm.hostname = "centos6.localdomain"
 
     # We need to forward SSH manually because it will bind to 0.0.0. this way
     config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh"
-    config.vm.network :private_network, type: "dhcp", auto_config: false
+    
+    # Use the kind of network you need, remember to do a vagrant reload...
+    #config.vm.network :private_network, type: "dhcp", auto_config: false
+    config.vm.network "public_network"
 
     # Forward X11
     config.ssh.forward_x11 = true
@@ -20,6 +23,12 @@ Vagrant.configure("2") do |config|
     ## Use this line to forward ports, remember to open local firewall and reload vagrant
     #config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
     #config.vm.network :forwarded_port, guest: 80, host: 580, id: "apache", auto_correct: true
+
+
+    # Use a provision script at vagrant level
+    config.vm.provision "shell", path: "provision.sh"
+
+    config.vm.synced_folder "sync/" , "/vagrant"
 
 
     config.vm.provider :virtualbox do |vb|

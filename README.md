@@ -22,7 +22,7 @@
   
   You could modify bash script in 'scripts' folder to install/configure your template Vagrant box.
   
-  When Packer job finish you could find a "{system OS}.box" inside the vagrant/{desired OS} folder so move there a get it up! Feel free of copy this folder where you are more confortable.
+  When Packer job finish you could find a "{system OS}.box" inside the packer_output folder so move to the desired OS vagrant dir and get it up! Feel free of copy this folder where you are more confortable.
   
   Then just ```vagrant up```  it and you could connect trough SSH: ```ssh vagrant@localhost:2222``` / ```vagrant ssh``` for Linux guests or ```vagrant rdp``` for Windows guests
   
@@ -58,7 +58,7 @@
   
   You could tune bash script in 'scripts' folder to install/configure your template Vagrant box.
    
-  When Packer job finish you could find a "{system OS}.box" inside the vagrant/{desired OS} folder so move there a get it up! Feel free of copy this folder where you are more confortable.
+  When Packer job finish you could find a "{system OS}.box" inside the packer_output folder so move to the desired OS vagrant dir and get it up! Feel free of copy this folder where you are more confortable.
   
   Then just ```vagrant up```  it and you could connect trough SSH: ```ssh vagrant@localhost:2222``` / ```vagrant ssh``` for Linux guests or ```vagrant rdp``` for Windows guests
   
@@ -79,6 +79,8 @@
 ###### Note2: Modify Autounattend.xml to configure Windows updates before you create your box.
 
 ###### Note3: Vagrantfile are configured for Virtualbox Boxes, change it to desired
+
+###### Bug 1: Centos7 image uses "Base" packages group untill Vagrant stop using 'ipconfig' and 'service' command to configure network interfaces. [This ticket] is not solving the problem (https://github.com/mitchellh/vagrant/pull/4195)
   
 
 
