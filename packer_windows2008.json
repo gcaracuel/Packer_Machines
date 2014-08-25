@@ -95,7 +95,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "./vagrant/windows2008/windows_2008_{{.Provider}}.box"
+      "output": "./packer-output/windows_2008_{{.Provider}}.box"
     }
   ]
 }

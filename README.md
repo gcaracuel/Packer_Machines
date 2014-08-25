@@ -73,6 +73,10 @@
 
 ---
 
+OK, so you need multiple VMs? No problem, just clone the vagrant/{OS} dir, change the port forwarding to avoid used ports a vagrant up another instance!
+
+---
+
 
 ###### Note: Username: vagrant  Password: vagrant
 
