@@ -13,8 +13,8 @@
       "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
       "iso_checksum_type": "md5",
       "iso_urls": [
-      	"iso/CentOS-6.5-x86_64-minimal.iso",
-      	"http://mirror.rackspace.com/CentOS/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso"
+      	"iso/CentOS-6.6-x86_64-minimal.iso",
+      	"http://mirror.rackspace.com/CentOS/6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso"
       ],
       "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
