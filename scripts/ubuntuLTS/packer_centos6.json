@@ -1,0 +1,69 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "RedHat_64",
+      "headless": true,
+      "http_directory": "./bootstrap/centos6",
+      "http_port_min": "8970",
+      "iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
+      "iso_checksum_type": "md5",
+      "iso_urls": [
+      	"iso/CentOS-6.6-x86_64-minimal.iso",
+      	"http://mirror.rackspace.com/CentOS/6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso"
+      ],
+      "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version"
+    }
+  ],
+  "post-processors": [
+    {
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "./packer-output/centos6.box"
+    }
+  ],
+  "provisioners": [
+    {
+      "override": {
+        "virtualbox-iso": {
+          "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'"
+        }
+      },
+      "scripts": [
+        "scripts/centos6/root_setup.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "scripts": [
+        "scripts/centos6/setup.sh"
+      ],
+      "type": "shell"
+    }
+  ]
+}
+

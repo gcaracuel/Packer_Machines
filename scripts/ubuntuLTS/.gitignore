@@ -13,4 +13,4 @@ vagrant/*/*.box
 vagrant/*/.vagrant/*
 
 # ISO images
-#iso/*
+iso/*
