@@ -20,7 +20,7 @@
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
-        "./bootstrap/windows7/Autounattend.xml",
+        "./bootstrap/windows7_32/Autounattend.xml",
         "./scripts/windows/dis-updates.ps1",
         "./scripts/windows/win-updates.ps1",
         "./scripts/windows/openssh.ps1"
@@ -49,7 +49,7 @@
       "guest_os_type": "Windows7",
       "disk_size": 61440,
       "floppy_files": [
-        "./bootstrap/windows7/Autounattend.xml",
+        "./bootstrap/windows7_32/Autounattend.xml",
         "./scripts/windows/dis-updates.ps1",
         "./scripts/windows/win-updates.ps1",
         "./scripts/windows/openssh.ps1"
@@ -76,7 +76,7 @@
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
-        "./scripts/windows/vm-guest-tools.bat",
+        "./scripts/windows/vm-guest-tools_32.bat",
         "./scripts/windows/vagrant-ssh.bat"
       ]
     },

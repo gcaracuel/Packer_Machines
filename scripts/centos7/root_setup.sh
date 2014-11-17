@@ -23,7 +23,7 @@ sudo yum groupinstall -y "Base"
 #sudo rpm -i rpmforge-release-0.5.3-1.el7.rf.*.rpm
 #sudo yum --enablerepo rpmforge install -y dkms
 sudo rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm;
+sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm;
 sudo yum --enablerepo epel install -y dkms
 
 # Installing vagrant keys

@@ -1,0 +1,43 @@
+Vagrant.configure("2") do |config|
+    config.vm.define "vagrant"
+    config.vm.box = "vagrant_ubuntuLTS"
+    config.vm.box_url = "file://../../packer-output/ubuntuLTS.box"
+    config.vm.hostname = "ubuntuLTS.localdomain"
+
+    # We need to forward SSH manually because it will bind to 0.0.0. this way
+    config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh"
+    
+    # Use the kind of network you need, remember to do a vagrant reload...
+    #config.vm.network :private_network, type: "dhcp", auto_config: false
+    config.vm.network "public_network"
+
+    # Forward X11
+    config.ssh.forward_x11 = true
+    
+    #config.ssh.pty = true
+
+
+    ## Using NFS as it has much better performance
+    ## On linux install nfs-kernel-server, MacOS works by default
+    ## Will ask for root password to set some things up
+    config.vm.synced_folder ".", "/vagrant", :nfs => true
+
+
+    ## Use this line to forward ports, remember to open local firewall and reload vagrant
+    #config.vm.network :forwarded_port, guest: 8080, host: 58080, id: "tomcat", auto_correct: true
+    #config.vm.network :forwarded_port, guest: 80, host: 580, id: "apache", auto_correct: true
+
+
+    # Use a provision script at vagrant level
+    config.vm.provision "shell", path: "provision.sh"
+
+    config.vm.synced_folder "sync/" , "/vagrant"
+
+
+    config.vm.provider :virtualbox do |vb|
+        #vb.gui = true
+        vb.customize ["modifyvm", :id, "--memory", 1024]
+        vb.customize ["modifyvm", :id, "--cpus", 2]
+        vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+end
