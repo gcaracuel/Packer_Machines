@@ -2,25 +2,21 @@
   "builders": [
     {
       "boot_command": [
-        "<esc><esc><enter><wait>","/install/vmlinuz noapic ", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "debian-installer=en_US auto locale=en_US kbd-chooser/method=gb ",
-        "hostname={{ .Name }} ",
-        "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=GB", "keyboard-configuration/variant=GB console-setup/ask_detect=false ",
-        "initrd=/install/initrd.gz -- <enter>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "guest_os_type": "Ubuntu_64",
+      "guest_os_type": "RedHat_64",
       "headless": true,
-      "http_directory": "./bootstrap/ubuntuLTS",
+      "http_directory": "./bootstrap/centos7",
       "http_port_min": "8970",
-      "iso_checksum": "ca2531b8cd79ea5b778ede3a524779b9",
+      "iso_checksum": "e3afe3f1121d69c40cc23f0bafa05e5d",
       "iso_checksum_type": "md5",
       "iso_urls": [
-      	"iso/ubuntu-14.04.1-server-amd64.iso",
-      	"http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-server-amd64.iso"
+      	"iso/CentOS-7.0-1406-x86_64-Minimal.iso",
+      	"http://mirror.rackspace.com/CentOS/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-Minimal.iso"
       ],
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -47,7 +43,7 @@
     {
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "./packer-output/ubuntuLTS.box"
+    "output": "./packer-output/centos7'docker.box"
     }
   ],
   "provisioners": [
@@ -58,13 +54,13 @@
         }
       },
       "scripts": [
-        "scripts/ubuntuLTS/root_setup.sh"
+        "scripts/centos7_docker/root_setup.sh"
       ],
       "type": "shell"
     },
     {
       "scripts": [
-        "scripts/ubuntuLTS/setup.sh"
+        "scripts/centos7_docker/setup.sh"
       ],
       "type": "shell"
     }

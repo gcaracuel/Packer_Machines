@@ -37,3 +37,5 @@ rm /home/vagrant/*.iso
 ## clean up the install
 apt-get dist-upgrade -y
 apt-get clean
+
+date > /etc/vagrant_box_build_time

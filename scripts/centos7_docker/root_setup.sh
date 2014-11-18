@@ -48,8 +48,7 @@ rm /home/vagrant/*.iso
 
 ##### PUT HERE YOUR STUFF
 
-
-
+yum install -y docker
 
 #####
 

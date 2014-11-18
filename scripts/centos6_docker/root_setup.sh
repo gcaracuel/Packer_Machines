@@ -16,25 +16,18 @@ chown -R vagrant /home/vagrant/.ssh
 # Make ssh faster by not waiting on DNS
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
-# Next line should be removed after Vagrant solves the problem with: Dynamic network cards https://github.com/mitchellh/vagrant/pull/4195
-# It will instal ifconfig and service commands since vagrant is still using
-yum groupinstall -y "Base"
-
 # Add here all the packages you need as base (For Guest Additions)
 yum install -y wget telnet vim
 yum install -y kernel-devel-`uname -r`
 yum install -y kernel-headers-`uname -r`
 
-# Rpmforge is not working for CentOS 7 yet we'll use EPEL repos
-#sudo rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-#wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
-#sudo rpm -i rpmforge-release-0.5.3-1.el7.rf.*.rpm
-#sudo yum --enablerepo rpmforge install -y dkms
-rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm;
-yum --enablerepo epel install -y dkms
+rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+rpm -i rpmforge-release-0.5.3-1.el6.rf.*.rpm
+yum --enablerepo rpmforge install -y dkms
+rm -rf /home/vagrant/rpmforge-release-0.5.3-1.el6.rf.*.rpm
 
-#Installing  Virtualbox guest additions
+#Installing Virtualbox guest additions
 mkdir /tmp/vbox
 VER=$(cat /home/vagrant/.vbox_version)
 mount -o loop /home/vagrant/VBoxGuestAdditions_$VER.iso /tmp/vbox
@@ -49,6 +42,26 @@ rm /home/vagrant/*.iso
 ##### PUT HERE YOUR STUFF
 
 
+## Docker kernel
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+sudo rpm -Uvh epel-release-6*.rpm
+
+echo "Install docker:"
+yum install -y docker-io
+chkconfig docker on
+
+#echo "Add cgroup to fstab"
+#echo "none                    /sys/fs/cgroup          cgroup  defaults        0 0" >> /etc/fstab
+
+#echo "Install custom docker kernel:"
+#rpm -iUvh http://tsuru.s3.amazonaws.com/centos/kernel-ml-aufs-3.10.11-1.el6.x86_64.rpm
+
+#echo "Make sure to boot the docker kernel."
+#sed -i s/default=1/default=0/g /boot/grub/menu.lst
+#sed -i s/default=1/default=0/g /boot/grub/grub.conf
+
+echo "Set IP forwarding permanetly:"
+sed 's/net.ipv4.ip_forward.*/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 
 
 #####
