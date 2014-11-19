@@ -3,39 +3,46 @@
 # Basic system preparation
 set -e
 
+# Set up sudo
+sudo echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
 # Configure google DNS servers
 sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 sudo echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
-# Add here all the packages you need as base (For Guest Additions)
-sudo apt-get install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r) curl wget 
+sudo apt-get -y update && apt-get -y upgrade
+sudo apt-get -y install linux-image-generic-lts-raring linux-headers-generic-lts-raring build-essential curl wget module-assistant
 
-# Set up sudo
-sudo echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Installing vagrant keys
-mkdir /home/vagrant/.ssh
-chmod 700 /home/vagrant/.ssh
+sudo mkdir /home/vagrant/.ssh
+sudo chmod 700 /home/vagrant/.ssh
 cd /home/vagrant/.ssh
-wget --no-check-certificate 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' -O authorized_keys
-chmod 600 /home/vagrant/.ssh/authorized_keys
-chown -R vagrant:vagrant /home/vagrant/.ssh
+sudo wget --no-check-certificate 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' -O authorized_keys
+sudo chmod 600 /home/vagrant/.ssh/authorized_keys
+sudo chown -R vagrant:vagrant /home/vagrant/.ssh
 
 
-#Installing  Vritualbox guest additions
-mkdir /tmp/vbox
+# Installing  Virtualbox guest additions
+sudo mkdir /mnt/VBoxGuestAdditions
 VER=$(cat /home/vagrant/.vbox_version)
-mount -o loop /home/vagrant/VBoxGuestAdditions_$VER.iso /tmp/vbox
-# Return always true (exit code 0) to avoid bug in additions when no X.org
-sh -c "/tmp/vbox/VBoxLinuxAdditions.run; true"
-tail /var/log/vboxadd-install.log
-umount /tmp/vbox
-rmdir /tmp/vbox
-rm /home/vagrant/*.iso
+sudo mount /home/vagrant/VBoxGuestAdditions_$VER.iso /mnt/VBoxGuestAdditions
+sudo sh -c "/mnt/VBoxGuestAdditions/VBoxLinuxAdditions.run ; true"
+sudo umount /mnt/VBoxGuestAdditions
+sudo rmdir /mnt/VBoxGuestAdditions
+sudo rm /home/vagrant/VBoxGuestAdditions_*.iso
 
+
+##### DO IT HERE YOUR STUFF
+
+
+
+
+
+#####
 
 ## clean up the install
-apt-get dist-upgrade -y
-apt-get clean
+sudo apt-get dist-upgrade -y
+sudo apt-get clean
 
 date > /etc/vagrant_box_build_time
